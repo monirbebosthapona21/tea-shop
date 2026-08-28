@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>চা-পাতা | Tea Shop</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+
+    .product {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    select,
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    textarea {
+      height: 90px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: #25D366;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    button:active {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="product">
+
+    <h2>🍵 চা-পাতা</h2>
+
+    <label>প্যাকেট নির্বাচন করুন:</label>
+
+    <select id="teaPack">
+      <option value="250">২৫০ গ্রাম — ১৪০ টাকা</option>
+      <option value="500">৫০০ গ্রাম — ২৬০ টাকা</option>
+      <option value="1000">১০০০ গ্রাম — ৫২০ টাকা</option>
+    </select>
+
+    <label>আপনার নাম:</label>
+    <input type="text" id="customerName" placeholder="নাম লিখুন">
+
+    <label>মোবাইল নম্বর:</label>
+    <input type="tel" id="customerPhone" placeholder="মোবাইল নম্বর লিখুন">
+
+    <label>ঠিকানা:</label>
+    <textarea id="customerAddress" placeholder="সম্পূর্ণ ঠিকানা লিখুন"></textarea>
+
+    <button onclick="orderTea()">অর্ডার নাও | Order Now</button>
+
+  </div>
+
+  <script>
+    function orderTea() {
+
+      const pack = document.getElementById("teaPack").value;
+      const name = document.getElementById("customerName").value.trim();
+      const phone = document.getElementById("customerPhone").value.trim();
+      const address = document.getElementById("customerAddress").value.trim();
+
+      let packName = "";
+      let price = "";
+
+      if (pack === "250") {
+        packName = "২৫০ গ্রাম";
+        price = "১৪০ টাকা";
+      }
+
+      else if (pack === "500") {
+        packName = "৫০০ গ্রাম";
+        price = "২৬০ টাকা";
+      }
+
+      else if (pack === "1000") {
+        packName = "১০০০ গ্রাম";
+        price = "৫২০ টাকা";
+      }
+
+      if (name === "" || phone === "" || address === "") {
+        alert("দয়া করে নাম, মোবাইল নম্বর ও ঠিকানা পূরণ করুন।");
+        return;
+      }
+
+      const message =
+        "🛒 নতুন অর্ডার\n\n" +
+        "📦 পণ্য: চা-পাতা\n" +
+        "⚖️ পরিমাণ: " + packName + "\n" +
+        "💰 দাম: " + price + "\n" +
+        "👤 নাম: " + name + "\n" +
+        "📞 মোবাইল: " + phone + "\n" +
+        "📍 ঠিকানা: " + address;
+
+      const whatsappURL =
+        "https://wa.me/8801710524889?text=" +
+        encodeURIComponent(message);
+
+      window.open(whatsappURL, "_blank");
+    }
+  </script>
+
+</body>
+</html>
